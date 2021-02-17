@@ -1,0 +1,15 @@
+{
+    "name": "RN-KKUTU",
+    "version": "1.0",
+    "manifest_version": 2,
+    "browser_action": {
+        "default_popup": "view/popup.html"
+    },
+    "content_scripts": [ {
+        "all_frames": true,
+        "matches": [ "https://kkutu.co.kr/*" ],
+        "js": ["/src/script.js"],
+        "run_at": "document_start"
+    } ],
+    "web_accessible_resources" : ["/src/content.js", "/src/dictionary.js"]
+}
