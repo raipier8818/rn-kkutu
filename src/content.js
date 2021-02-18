@@ -1,5 +1,5 @@
 function initialize() {
-    // window.rnDict
+    window.rnSkip = {};
 }
 
 function copyClipboard(str) {
@@ -18,11 +18,12 @@ function getKeyword() {
 function copyLong() {
     var key = getKeyword();
     for (var i of rnDictLong) {
-        if (i[0] == key) {
+        if (i[0] == key && window.rnSkip[i] != true) {
             copyClipboard(i);
             console.log(i);
             $('[id*=UserMassage]')[0].value = i;
             $('#ChotBtn').click();
+            window.rnSkip[i] = true;
             return;
         }
     }
@@ -34,6 +35,7 @@ function copyKill() {
 }
 
 function main() {
+    initialize();
     window.onkeydown = function(e) {
         if (e.key == "1") copyLong();
         else if (e.key == "2") copyKill();
